@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibes Place - PVP Faction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #111;
+            color: white;
+            text-align: center;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .features, .wiki, .gameplay, .presentation {
+            padding: 50px 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .feature-list, .gameplay-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding-top: 20px;
+        }
+
+        .feature, .gameplay-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .feature:hover, .gameplay-item:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .video-container {
+            margin-top: 40px;
+        }
+
+        iframe {
+            width: 80%;
+            height: 450px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <video autoplay muted loop id="background-video">
+            <source src="animation.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>Vibes Place</h1>
+            <h2>Là où seule la vraie puissance règne !</h2>
+            <br />
+            <div class="buttons">
+                <a href="#" class="btn">playvb.eletrix.fr</a>
+                <a href="https://discord.gg/kTsQC4ASp7" class="btn">Discord</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="features">
+        <h2>Ce que Vibes Place offre</h2>
+        <div class="feature-list">
+            <div class="feature">Un gameplay Farm2Win unique</div>
+            <div class="feature">Un PVP intense et stratégique</div>
+            <div class="feature">Des événements réguliers</div>
+            <div class="feature">Une communauté active et accueillante</div>
+        </div>
+    </section>
+
+    <section class="gameplay">
+        <h2>Nos systèmes de jeu</h2>
+        <div class="gameplay-list">
+            <div class="gameplay-item"><strong>Système de Faction :</strong> Formez votre propre faction, recrutez des membres et affrontez d'autres clans pour la domination du serveur.</div>
+            <div class="gameplay-item"><strong>Économie Farm2Win :</strong> Gagnez des ressources en farmant et en vendant vos items. Aucun achat obligatoire pour progresser !</div>
+            <div class="gameplay-item"><strong>Zones de Farm :</strong> Accédez à des zones sécurisées ou dangereuses pour récolter des ressources rares, avec des risques et des récompenses.</div>
+            <div class="gameplay-item"><strong>Combat Stratégique :</strong> Profitez d'un système de combat équilibré où chaque décision peut changer l'issue du combat.</div>
+        </div>
+    </section>
+<br />
+    <section class="presentation">
+        <h2>Découvrez Vibes Place</h2>
+        <p>Vibes Place est un serveur Minecraft PVP Faction Farm2Win où la compétition et la stratégie priment. 
+        Chaque joueur peut évoluer sans dépenser d'argent grâce à un système économique robuste basé sur la récolte et la vente d'objets.
+        Les factions permettent aux joueurs de s'allier et de combattre ensemble pour le contrôle du territoire. 
+        Les zones de farm offrent des ressources rares et précieuses, tout en introduisant des défis stratégiques pour les plus courageux. 
+        Préparez-vous à affronter d'autres joueurs dans des batailles épiques et à prouver votre valeur sur Vibes Place.</p>
+    </section>
+<br />
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/watch?v=6w5vFQmGLww" allowfullscreen></iframe>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <p>&copy Vibes Place / Tout droits réservés</p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll(".features, .wiki, .gameplay, .presentation");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, { threshold: 0.2 });
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+</html>
