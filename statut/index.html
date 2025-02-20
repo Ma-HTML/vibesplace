@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status du Serveur - Vibes Place</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #1e1e1e;
+            color: white;
+            padding: 20px;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #292929;
+            display: inline-block;
+        }
+        .online {
+            color: #4CAF50;
+        }
+        .offline {
+            color: #F44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>Statut du serveur Minecraft - Vibes Place</h1>
+    <div class="status">
+        <p id="serverStatus">Chargement...</p>
+        <p id="playerInfo"></p>
+    </div>
+
+    <script>
+        async function fetchServerStatus() {
+            try {
+                const response = await fetch('/status');
+                const data = await response.json();
+
+                const statusElement = document.getElementById('serverStatus');
+                const playerInfoElement = document.getElementById('playerInfo');
+
+                if (data.online) {
+                    statusElement.innerHTML = `<strong class="online">En ligne</strong>`;
+                    playerInfoElement.innerText = `Joueurs : ${data.players}/${data.maxPlayers} - Version : ${data.version}`;
+                } else {
+                    statusElement.innerHTML = `<strong class="offline">Hors ligne</strong>`;
+                    playerInfoElement.innerText = '';
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération du statut du serveur', error);
+            }
+        }
+
+        fetchServerStatus();
+        setInterval(fetchServerStatus, 30000);
+    </script>
+</body>
+</html>
