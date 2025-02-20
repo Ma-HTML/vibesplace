@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote pour Vibes Place</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .vote-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            width: 400px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            display: block;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="vote-container">
+        <h1>Vote pour Vibes Place</h1>
+        <p>Aidez notre serveur à grandir en votant chaque jour ! En votant, vous recevez des récompenses exclusives en jeu.</p>
+        <p>Entrez votre pseudo Minecraft pour enregistrer votre vote et obtenir vos récompenses.</p>
+        <input type="text" id="username" placeholder="Entrez votre pseudo">
+        <button class="btn" id="voteBtn">Envoyer</button>
+        <button class="btn hidden" id="waitingBtn" disabled>En attente du vote...</button>
+        <button class="btn hidden" id="validatedBtn" disabled>Vote validé !</button>
+    </div>
+
+    <script>
+        document.getElementById("voteBtn").addEventListener("click", function() {
+            const username = document.getElementById("username").value;
+            if (username.trim() === "") {
+                alert("Veuillez entrer votre pseudo.");
+                return;
+            }
+            
+            // Cache le champ et le bouton
+            document.getElementById("username").classList.add("hidden");
+            document.getElementById("voteBtn").classList.add("hidden");
+            document.getElementById("waitingBtn").classList.remove("hidden");
+            
+            // Redirection vers le lien de vote dans un nouvel onglet
+            window.open("https://serveur-prive.net/minecraft/vibesplace/vote");
+
+            // Simulation d'une vérification de vote (devra être remplacée par du backend)
+            setTimeout(() => {
+                document.getElementById("waitingBtn").classList.add("hidden");
+                document.getElementById("validatedBtn").classList.remove("hidden");
+            }, 10000); // Simulation après 10 secondes
+        });
+    </script>
+</body>
+</html>
